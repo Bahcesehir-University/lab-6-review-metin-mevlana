@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <cctype>
 using namespace std;
 
 // ================================
@@ -40,18 +41,18 @@ public:
     // Set name to "Unknown", id to 0, gpa to 0.0
     Student() {
         // YOUR CODE HERE
-        name="unknown";
-        id=0;
-        gpa=0.0;
-
+        name = "Unknown";
+        id = 0;
+        gpa = 0.0;
     }
 
     // TODO 1b: Parameterized constructor
     // Initialize all three member variables from parameters
     Student(string n, int i, double g) {
-        name=n;
+        // YOUR CODE HERE
+        name = n;
         id = i;
-        gpa=g;
+        gpa = g;
     }
 
     // TODO 1c: Copy constructor
@@ -67,7 +68,7 @@ public:
     // Print: "Student [name] destroyed"
     ~Student() {
         // YOUR CODE HERE
-        cout << "Student " << name << " destroyed"<< endl;
+        cout << "Student [" << name << "] destroyed";
     }
 
     // ----- Task 2: Getters (Encapsulation) -----
@@ -96,8 +97,8 @@ public:
     // Name must not be empty. If empty, keep current name.
     void setName(string n) {
         // YOUR CODE HERE
-        if(!n.empty()) {
-            name=n; 
+        if (!n.empty()) {
+            name = n;
         }
     }
 
@@ -106,7 +107,7 @@ public:
     // If out of range, keep current GPA.
     void setGpa(double g) {
         // YOUR CODE HERE
-        if( g >= 0.0 && g <= 4.0){
+        if (g >= 0.0 && g <= 4.0) {
             gpa = g;
         }
     }
@@ -119,8 +120,8 @@ public:
     string getFormattedName() const {
         // YOUR CODE HERE
         string upperName = name;
-        for (int i=0; i< upperName.length(); i++){
-            upperName[i]= toupper(upperName[i]);
+        for (int i = 0; i < upperName.length(); i++) {
+            upperName[i] = toupper(static_cast<unsigned char>(upperName[i]));
         }
         return upperName;
     }
@@ -160,7 +161,7 @@ public:
 Student findBestStudent(const Student& a, const Student& b) {
     // YOUR CODE HERE
     if (a.getGpa() > b.getGpa()) {
-    return a;
+        return a;
     }
     return b;
 }
@@ -168,7 +169,7 @@ Student findBestStudent(const Student& a, const Student& b) {
 // Version 2: Takes an array of Students and its size, returns the one with highest GPA
 Student findBestStudent(Student arr[], int size) {
     // YOUR CODE HERE
-        Student best = arr[0];
+    Student best = arr[0];
     for (int i = 1; i < size; i++) {
         if (arr[i].getGpa() > best.getGpa()) {
             best = arr[i];
