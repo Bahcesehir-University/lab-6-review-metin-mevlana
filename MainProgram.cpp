@@ -67,7 +67,7 @@ public:
     // Print: "Student [name] destroyed"
     ~Student() {
         // YOUR CODE HERE
-        cout << "Student" << name << "destroyed"<< endl;
+        cout << "Student " << name << " destroyed"<< endl;
     }
 
     // ----- Task 2: Getters (Encapsulation) -----
